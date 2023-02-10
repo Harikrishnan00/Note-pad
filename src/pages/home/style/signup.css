@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.signup-box{
+    display: grid;
+    grid-column: 2/5;
+    grid-row: 2/5;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    background-color: white;
+    width: clamp(300px,40%,500px);
+    height: 100%;
+    place-self: center;
+}
+
+.cancel{
+    display: grid;
+    grid-column: 5/6;
+    grid-row: 1/2;
+    width: 30%;
+    height: 30%;
+    justify-self: self-end;
+    margin-top: .4rem;
+    margin-right: .4rem;
+    cursor: pointer;
+}
+
+.signup-box .authentication-third-party-section{
+    display: grid;
+    grid-column: 2/5;
+    grid-row: 1/3;
+    margin-top: 15%;
+}
+
+.signup-box .authentication-third-party{
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.signup-box .or{
+    margin-top: .8rem;
+}
+
+.signup-box .login-with-email-and-pass{
+    display: grid;
+    grid-column: 2/5;
+    grid-row: 3/6;
+}
+
+.signup-box .input-for-email-and-pass{
+    margin-top: 0rem;
+}
+
+.signup-box .input-for-email-and-pass input{
+    height: 50%;
+    margin-top: -1rem;
+    width: clamp(160px,65%,65%);
+}
+
+.signup-box .keep-logged-in-and-forget{
+    display: grid;
+    grid-row: 2/3;
+    grid-column: 1/3;
+    grid-template-columns: 100%;
+}
+
+.signup-box .keep-me-logged-in{
+    margin-left: 0;
+    margin-top: -2rem;
+}
+
+.signup-box .keep-me-logged-in input{
+    place-self: start;
+    margin-top: -.35rem;
+    
+}
+
+.signup-box .submit-button{
+    margin-top: -3rem;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px){
+    .signup-box{
+        border-radius: 1rem;
+    }
+}

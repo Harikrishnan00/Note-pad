@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style/login.css'
 import google from '../../assets/icons/google.png'
 import github from '../../assets/icons/github.png'
 import facebook from '../../assets/icons/facebook.png'
+import auth from '../../firebase/Firebase'
+import {signInWithEmailAndPassword} from 'firebase/auth'
 
+function Login({ showOrHideSignUpBox }) {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
-function Login() {
+    const login = (e) => {
+        e.preventDefault()
+        console.log("first")
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => { 
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            })
+    }
     return (
         <>
 
@@ -25,10 +42,10 @@ function Login() {
                 <p className='or'>or</p>
             </div>
             <div className="login-with-email-and-pass">
-                <form action="">
+                <form action="" onSubmit={login}>
                     <div className="input-for-email-and-pass">
-                        <input type="email" placeholder='Email'/>
-                        <input type="password" placeholder='Password'/>
+                        <input type="email" placeholder='Email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                        <input type="password" placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
                     </div>
                     <div className="keep-logged-in-and-forget">
                         <div className="keep-me-logged-in">
@@ -42,7 +59,7 @@ function Login() {
                     <button className='submit-button'>Sign In</button>
                 </form>
             </div>
-            <div className="signup-btn">
+            <div className="signup-btn" onClick={() => showOrHideSignUpBox(true)}>
                 <p>Are you new here?</p>
             </div>
         </>

@@ -44,8 +44,9 @@
     display: grid;
     place-items: center;
     background-color: white;
-    margin-left: clamp(.9rem,1rem,1.2rem);
+    margin-left: clamp(.1rem,1rem,1.2rem);
     border: 1px solid #2c2a2a59;
+    cursor: pointer;
 }
 
 .google:hover,.github:hover,.facebook:hover{
@@ -93,7 +94,7 @@
 }
 
 .input-for-email-and-pass input:focus{
-    outline:1px solid var(--btn-color);
+    outline:2px solid var(--btn-color);
 }
 
 .keep-logged-in-and-forget{
@@ -101,22 +102,24 @@
     grid-row: 2/3;
     grid-column: 1/3;
     font-family: var(--font--small);
-    font-size: .9rem;
-    /* margin-left: 10%; */
+    font-size: clamp(.6rem,1vw,.8rem);
 }
 
 .keep-me-logged-in{
     display: grid;
     grid-row: 2/3;
     grid-column: 1/2;
-    grid-template-columns: 30% 70%;
-    margin-left: 15%;
+    grid-template-columns: 10% 70%;
+    margin-left: 10%;
+    justify-content: end;
+    width: clamp(200px,80%,20rem);
+    cursor: pointer;
 }
 
 .keep-me-logged-in input{
-    width: 50%;
+    width: clamp(10px,80%,20rem);
     height: 50%;
-   justify-self: end;
+    cursor: pointer;
 }
 
 .forgot{
@@ -124,11 +127,14 @@
     grid-row: 2/3;
     grid-column: 2/3;
     margin-left: 8%;
+    cursor: pointer;
 }
 
 .forgot p{
-    color: blue;
+    color: #2A729A;
     text-decoration: underline;
+    width: clamp(200px,80%,20rem);
+    opacity: .8;
 }
 
 .submit-button{
@@ -145,6 +151,7 @@
     border-radius: .65rem;
     place-items: center;
     font-size: 1.2rem;
+    cursor: pointer;
 }
 
 .submit-button:hover{
@@ -156,9 +163,50 @@
     grid-row: 5/6;
     grid-column: 2/5;
     font-family: var(--font--small);
-    font-size: 1rem;
-    color: blue;
+    font-size: clamp(.6rem,3vw,1rem);
+    color: #2A729A;
     text-decoration: underline;
     justify-self: center;
     margin-top: 1rem;
+    cursor: pointer;
+    opacity: .8;
+}
+
+.signup-btn:hover,.forgot p:hover{
+    opacity: 1;
+}
+
+@media only screen and (max-width: 768px){
+    .authentication-third-party-section{
+        grid-column: 2/5;
+        grid-row: 1/2;
+        margin-top: 1rem;
+    }
+    
+    .login-with-email-and-pass{
+        grid-row: 2/5;
+        grid-column: 2/5;
+        margin-top: .5rem;
+        position:relative;
+    }
+
+    .or{
+        margin-top: .8rem;
+    }
+
+    .authentication-third-party{
+        margin-top: 1rem;   
+    }
+
+    .keep-me-logged-in{
+        margin-left: 10%;
+        justify-content: start;
+    }
+
+    .forgot p{
+        color: #2A729A;
+        text-decoration: underline;
+        width: clamp(100px,80%,20rem);
+        opacity: .8;
+    }
 }
