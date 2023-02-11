@@ -54,9 +54,9 @@ function Home() {
                 <div className='right-section'>
                     <Login showOrHideSignUpBox={showOrHideSignUpBox} />
                 </div>
-                {isClicked && (<div className="wrapper">
+                <div className={isClicked ? "wrapper active" : "wrapper " }>
                     <SignUp showOrHideSignUpBox={showOrHideSignUpBox}/>
-                </div>)}
+                </div>
             </div>
         </>
     )

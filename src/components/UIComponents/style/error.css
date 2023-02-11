@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Sofia+Sans+Semi+Condensed&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --error-text-color:rgba(255, 0, 0, 0.863);
+    --error-font-fam:'Roboto', sans-serif;
+}
+
+.error-message{
+    position: absolute;
+    color: var(--error-text-color);
+    font-family: var(--error-font-fam);
+    font-size: .85rem;
+    display: flex;
+    flex-direction: row;
+    height: 25%;
+    width: 100%;
+}
+
+.error-message img{
+    width: 8%;
+    height: 50%;
+}
