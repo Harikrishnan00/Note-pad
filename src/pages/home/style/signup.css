@@ -13,7 +13,6 @@
     width: clamp(300px,40%,500px);
     height: clamp(400px,100%,600px);
     place-self: center;
-    animation: popup 1s ease-in-out 0s;
 }
 
 .cancel{
@@ -85,18 +84,6 @@
     margin-top: -3rem;
     width: 90%;
     -webkit-tap-highlight-color: transparent;
-}
-
-@keyframes popup{
-    0%{
-        transform: scale(0,0);
-    }
-    50%{
-        transform: scale(1.2,1.2);
-    }
-    0%{
-        transform: scale(1,1);
-    }
 }
 
 @media only screen and (max-width: 768px){

@@ -5,6 +5,7 @@ import Remainder from "./pages/remainder/Remainder"
 import Labaled from "./pages/Labaled/Labaled"
 import Favourates from "./pages/favourates/Favourates"
 import { createBrowserRouter, createRoutesFromElements, Route, Outlet, RouterProvider } from 'react-router-dom'
+import Loading from "./pages/loadingPage/Loading";
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index path="/" element={<Home />} />
-        <Route path="notes" element={<Notes/>} />
+        <Route path='user/loading' element={<Loading />} />
+        <Route path=":username/notes" element={<Notes/>} />
       </Route>
     )
   )

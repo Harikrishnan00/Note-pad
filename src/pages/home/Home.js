@@ -1,19 +1,20 @@
+import './style/home.css'
 import React, { useState } from 'react'
 import { useEffect, useRef } from 'react'
-import './style/home.css'
-import Login from './Login'
-import SignUp from './SignUp'
 import Blob from '../../components/UIComponents/Blob'
 import Illustraion from '../../components/UIComponents/Illustration'
+import Login from './Login'
+import SignUp from './SignUp'
 import Typed from 'typed.js'
 import { motion, AnimatePresence } from 'framer-motion'
 
-
 function Home() {
 
-    const el = useRef(null);
+    const el = useRef(null); // used to refer the text section to be animated in typed js
 
+    // useEffect is used play typed animation when the component is loaded
     useEffect(() => {
+        // Typed animation initialization
         const typed = new Typed(el.current, {
             strings: ["Partner", "Partner"],
             startDelay: 300,
@@ -26,12 +27,14 @@ function Home() {
         )
     }, [])
 
-    const [isClicked, setisClicked] = useState(false)
+    const [isClicked, setisClicked] = useState(false) // To check whether "Are you new here" clicked or not 
 
+    // function used to change the state of isClicked when "Are you new here" clicked 
     const showOrHideSignUpBox = (data) => {
         setisClicked(data)
     }
 
+    // Animation varients for wrapper
     const wrapperVarients = {
         from: {
             clipPath: "circle(12.2% at 100% 0)",
@@ -41,7 +44,7 @@ function Home() {
             clipPath: "circle(141.4% at 100% 0)",
             opacity: 1,
             transition: {
-                duration: 1.5,
+                duration: .8,
                 when: "beforeChildren"
             }
         },
@@ -49,19 +52,15 @@ function Home() {
             clipPath: "circle(12.2% at 100% 0)",
             opacity:0,
             transition:{
-                duration:1,
+                duration:.8,
                 when: "afterChildren"
             }
         }
     }
 
-
-
-
-
     return (
         <>
-            <div className='container'>
+            <div className='container'> 
                 <div className='left-section'>
                     <div className='blob-1'>
                         <Blob />
@@ -82,8 +81,9 @@ function Home() {
                 <div className='right-section'>
                     <Login showOrHideSignUpBox={showOrHideSignUpBox} />
                 </div>
-                <AnimatePresence>
-                    {isClicked && (<motion.div
+                 <AnimatePresence> 
+                    {isClicked && 
+                    (<motion.div
                         className="wrapper "
                         variants={wrapperVarients}
                         initial="from"

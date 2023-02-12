@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
+import './style/signup.css'
 import google from '../../assets/icons/google.png'
 import github from '../../assets/icons/github.png'
 import facebook from '../../assets/icons/facebook.png'
 import cancel from '../../assets/icons/cancel.svg'
-import './style/signup.css'
+import Error from '../../components/UIComponents/Error'
 import auth from '../../firebase/Firebase'
 import {createUserWithEmailAndPassword,signInWithPopup,signInWithRedirect, GoogleAuthProvider,GithubAuthProvider,FacebookAuthProvider} from 'firebase/auth'
 import { useForm } from 'react-hook-form'
-import Error from '../../components/UIComponents/Error'
 import {motion} from 'framer-motion'
 
 function SignUp({showOrHideSignUpBox}) {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm() // Destructuring useForm
 
-    const signUp = ({email,password}) => {
+    // Function to perform signup with email and pass
+    const signUpWithEmailAndPass = ({email,password}) => {
         
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => { 
@@ -27,11 +27,14 @@ function SignUp({showOrHideSignUpBox}) {
             })
     }
 
+    // Initiliazing  the auth provider ojects from firebase to variables
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
     const facebookProvider = new FacebookAuthProvider() 
 
+    // Changing the signin method(withRedirect/withPopup) depends on the screen size of device
     let loginWithPopUpOrRedirect 
+
     if(window.innerWidth<768){
         loginWithPopUpOrRedirect = signInWithRedirect
         console.log("hello1")
@@ -40,7 +43,7 @@ function SignUp({showOrHideSignUpBox}) {
         console.log("hello2")
     }
 
-
+     // Function to  perform login with social accounts depends on which provider is clicked
     const loginWithSocialMedia = (provider) => {
       loginWithPopUpOrRedirect(auth, provider)
             .then((result) => {
@@ -60,7 +63,7 @@ function SignUp({showOrHideSignUpBox}) {
             })
     }
 
-
+    // Animation varients for Sigup box
     const innerBoxVarients= {
       from:{
         scale:0,
@@ -70,14 +73,14 @@ function SignUp({showOrHideSignUpBox}) {
         scale:[.5,1.1,1],
         opacity:[.5,1,1],
         transition:{
-          duration:1.2
+          duration:.8
         }
       },
       exit:{
         scale:[1.1,0],
         opacity:[1.1,0],
         transition:{
-          duration:1.2
+          duration:.8
         }
       }
     }
@@ -130,7 +133,7 @@ function SignUp({showOrHideSignUpBox}) {
           <p className='or'>or</p>
         </div>
         <div className="login-with-email-and-pass">
-          <form action="" onSubmit={handleSubmit(signUp)}>
+          <form action="" onSubmit={handleSubmit(signUpWithEmailAndPass)}>
           <div className="input-for-email-and-pass">
                         <input type="text" placeholder='Email'
                             className={errors.email ? "email-input active" : "email-input"}

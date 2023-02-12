@@ -10,16 +10,9 @@ import {motion} from 'framer-motion'
 
 function Login({ showOrHideSignUpBox }) {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    let loginWithPopUpOrRedirect 
-    if(window.innerWidth<768){
-        loginWithPopUpOrRedirect = signInWithRedirect
-        console.log("hello1")
-    }else{
-        loginWithPopUpOrRedirect = signInWithPopup
-        console.log("hello2")
-    }
+    const { register, handleSubmit, formState: { errors } } = useForm() // Destructuring useForm
 
+    // Function to perform login with email and pass
     const loginWithEmailAndPass = ({ email, password }) => {
         
         signInWithEmailAndPassword(auth, email, password)
@@ -33,15 +26,29 @@ function Login({ showOrHideSignUpBox }) {
             })
     }
 
+    // Initiliazing  the auth provider ojects from firebase to variables
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
     const facebookProvider = new FacebookAuthProvider() 
+
+    // Changing the signin method(withRedirect/withPopup) depends on the screen size of device
+    let loginWithPopUpOrRedirect
+
+    if(window.innerWidth<768){
+        loginWithPopUpOrRedirect = signInWithRedirect
+    }else{
+        loginWithPopUpOrRedirect = signInWithPopup
+    }
     
+    // Function to  perform login with social accounts depends on which provider is clicked
     const loginWithSocialMedia = (provider) => {
         loginWithPopUpOrRedirect(auth, provider)
             .then((result) => {
                 const user = result.user;
-                console.log(user.uid)
+                // user.displayName
+                // user.uid
+                // user.photoURL
+                console.log(user)
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -56,7 +63,6 @@ function Login({ showOrHideSignUpBox }) {
 
     return (
         <>
-
             <div className="authentication-third-party-section">
                 <p >Sign in with</p>
                 <div className="authentication-third-party">
@@ -69,7 +75,7 @@ function Login({ showOrHideSignUpBox }) {
                         loginWithSocialMedia(googleProvider)
                     }}>
                         <img src={google} alt="google" />
-                    </motion.div>
+                    </motion.div> 
                     <motion.div 
                     className="github"
                     whileTap={{
