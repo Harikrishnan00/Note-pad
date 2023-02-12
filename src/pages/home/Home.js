@@ -6,6 +6,7 @@ import SignUp from './SignUp'
 import Blob from '../../components/UIComponents/Blob'
 import Illustraion from '../../components/UIComponents/Illustration'
 import Typed from 'typed.js'
+import { motion, AnimatePresence } from 'framer-motion'
 
 
 function Home() {
@@ -14,22 +15,49 @@ function Home() {
 
     useEffect(() => {
         const typed = new Typed(el.current, {
-            strings: ["Partner","Partner"],
-            startDelay:300,
-            typeSpeed:200,
-            backDelay:200,
-            backSpeed:200,
-            smartBackspace:true,
+            strings: ["Partner", "Partner"],
+            startDelay: 300,
+            typeSpeed: 200,
+            backDelay: 200,
+            backSpeed: 200,
+            smartBackspace: true,
             loop: true
         }
         )
     }, [])
 
-    const [isClicked,setisClicked] = useState(false)
+    const [isClicked, setisClicked] = useState(false)
 
-    const showOrHideSignUpBox = (data) =>{
+    const showOrHideSignUpBox = (data) => {
         setisClicked(data)
     }
+
+    const wrapperVarients = {
+        from: {
+            clipPath: "circle(12.2% at 100% 0)",
+            opacity: 0
+        },
+        to: {
+            clipPath: "circle(141.4% at 100% 0)",
+            opacity: 1,
+            transition: {
+                duration: 1.5,
+                when: "beforeChildren"
+            }
+        },
+        exit:{
+            clipPath: "circle(12.2% at 100% 0)",
+            opacity:0,
+            transition:{
+                duration:1,
+                when: "afterChildren"
+            }
+        }
+    }
+
+
+
+
 
     return (
         <>
@@ -54,9 +82,17 @@ function Home() {
                 <div className='right-section'>
                     <Login showOrHideSignUpBox={showOrHideSignUpBox} />
                 </div>
-                <div className={isClicked ? "wrapper active" : "wrapper " }>
-                    <SignUp showOrHideSignUpBox={showOrHideSignUpBox}/>
-                </div>
+                <AnimatePresence>
+                    {isClicked && (<motion.div
+                        className="wrapper "
+                        variants={wrapperVarients}
+                        initial="from"
+                        animate="to"
+                        exit="exit"
+                    >
+                        <SignUp showOrHideSignUpBox={showOrHideSignUpBox} />
+                    </motion.div>)}
+                </AnimatePresence>
             </div>
         </>
     )

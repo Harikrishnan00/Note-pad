@@ -1,19 +1,27 @@
-import React, { useState } from 'react'
 import './style/login.css'
 import google from '../../assets/icons/google.png'
 import github from '../../assets/icons/github.png'
 import facebook from '../../assets/icons/facebook.png'
 import auth from '../../firebase/Firebase'
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,GithubAuthProvider,FacebookAuthProvider } from 'firebase/auth'
+import {signInWithRedirect ,signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,GithubAuthProvider,FacebookAuthProvider } from 'firebase/auth'
 import Error from '../../components/UIComponents/Error'
 import { useForm } from 'react-hook-form'
+import {motion} from 'framer-motion'
 
 function Login({ showOrHideSignUpBox }) {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-    console.log(errors);
-    const loginWithEmailAndPass = ({ email, password }) => {
+    let loginWithPopUpOrRedirect 
+    if(window.innerWidth<768){
+        loginWithPopUpOrRedirect = signInWithRedirect
+        console.log("hello1")
+    }else{
+        loginWithPopUpOrRedirect = signInWithPopup
+        console.log("hello2")
+    }
 
+    const loginWithEmailAndPass = ({ email, password }) => {
+        
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -28,9 +36,9 @@ function Login({ showOrHideSignUpBox }) {
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
     const facebookProvider = new FacebookAuthProvider() 
-
+    
     const loginWithSocialMedia = (provider) => {
-        signInWithPopup(auth, provider)
+        loginWithPopUpOrRedirect(auth, provider)
             .then((result) => {
                 const user = result.user;
                 console.log(user.uid)
@@ -52,21 +60,36 @@ function Login({ showOrHideSignUpBox }) {
             <div className="authentication-third-party-section">
                 <p >Sign in with</p>
                 <div className="authentication-third-party">
-                    <div className="google" onClick={()=>{
+                    <motion.div 
+                    className="google"
+                    whileTap={{
+                        scale:1.2
+                    }} 
+                    onClick={()=>{
                         loginWithSocialMedia(googleProvider)
                     }}>
                         <img src={google} alt="google" />
-                    </div>
-                    <div className="github" onClick={()=>{
+                    </motion.div>
+                    <motion.div 
+                    className="github"
+                    whileTap={{
+                        scale:1.2
+                    }}  
+                    onClick={()=>{
                         loginWithSocialMedia(githubProvider)
                     }}>
                         <img src={github} alt="github" />
-                    </div>
-                    <div className="facebook" onClick={()=>{
+                    </motion.div>
+                    <motion.div 
+                    className="facebook"
+                    whileTap={{
+                        scale:1.2
+                    }}  
+                    onClick={()=>{
                         loginWithSocialMedia(facebookProvider)
                     }}>
                         <img src={facebook} alt="fb" />
-                    </div>
+                    </motion.div>
                 </div>
                 <p className='or'>or</p>
             </div>
@@ -113,10 +136,16 @@ function Login({ showOrHideSignUpBox }) {
                             <p>forget password?</p>
                         </div>
                     </div>
-                    <button className='submit-button'>Sign In</button>
+                    <motion.button 
+                    className='submit-button'
+                    whileTap={{
+                        scale:1.1
+                    }}
+                    >Sign In</motion.button>
                 </form>
             </div>
-            <div className="signup-btn" onClick={() => showOrHideSignUpBox(true)}>
+            <div className="signup-btn" onClick={() => 
+                showOrHideSignUpBox(true)}>
                 <p>Are you new here?</p>
             </div>
         </>

@@ -47,6 +47,7 @@
     margin-left: clamp(.1rem,1rem,1.2rem);
     border: 1px solid #2c2a2a59;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .google:hover,.github:hover,.facebook:hover{
@@ -129,12 +130,14 @@
     justify-content: end;
     width: clamp(200px,80%,20rem);
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .keep-me-logged-in input{
     width: clamp(10px,80%,20rem);
     height: 50%;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .forgot{
@@ -143,6 +146,7 @@
     grid-column: 2/3;
     margin-left: 8%;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .forgot p{
@@ -150,6 +154,7 @@
     text-decoration: underline;
     width: clamp(200px,80%,20rem);
     opacity: .8;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .submit-button{
@@ -167,6 +172,7 @@
     place-items: center;
     font-size: 1.2rem;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .submit-button:hover{

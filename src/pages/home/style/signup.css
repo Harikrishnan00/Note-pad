@@ -26,6 +26,7 @@
     margin-top: .4rem;
     margin-right: .4rem;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .signup-box .authentication-third-party-section{
@@ -65,22 +66,25 @@
     grid-row: 2/3;
     grid-column: 1/3;
     grid-template-columns: 100%;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .signup-box .keep-me-logged-in{
     margin-left: 0;
     margin-top: -2rem;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .signup-box .keep-me-logged-in input{
     place-self: start;
     margin-top: -.35rem;
-    
+    -webkit-tap-highlight-color: transparent;
 }
 
 .signup-box .submit-button{
     margin-top: -3rem;
     width: 90%;
+    -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes popup{

@@ -5,10 +5,10 @@ import facebook from '../../assets/icons/facebook.png'
 import cancel from '../../assets/icons/cancel.svg'
 import './style/signup.css'
 import auth from '../../firebase/Firebase'
-import {createUserWithEmailAndPassword,signInWithPopup, GoogleAuthProvider,GithubAuthProvider,FacebookAuthProvider} from 'firebase/auth'
+import {createUserWithEmailAndPassword,signInWithPopup,signInWithRedirect, GoogleAuthProvider,GithubAuthProvider,FacebookAuthProvider} from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 import Error from '../../components/UIComponents/Error'
-
+import {motion} from 'framer-motion'
 
 function SignUp({showOrHideSignUpBox}) {
 
@@ -31,8 +31,18 @@ function SignUp({showOrHideSignUpBox}) {
     const githubProvider = new GithubAuthProvider()
     const facebookProvider = new FacebookAuthProvider() 
 
+    let loginWithPopUpOrRedirect 
+    if(window.innerWidth<768){
+        loginWithPopUpOrRedirect = signInWithRedirect
+        console.log("hello1")
+    }else{
+        loginWithPopUpOrRedirect = signInWithPopup
+        console.log("hello2")
+    }
+
+
     const loginWithSocialMedia = (provider) => {
-        signInWithPopup(auth, provider)
+      loginWithPopUpOrRedirect(auth, provider)
             .then((result) => {
                 const user = result.user;
                 console.log(user.uid)
@@ -50,30 +60,72 @@ function SignUp({showOrHideSignUpBox}) {
             })
     }
 
+
+    const innerBoxVarients= {
+      from:{
+        scale:0,
+        opacity:0
+      },
+      to:{
+        scale:[.5,1.1,1],
+        opacity:[.5,1,1],
+        transition:{
+          duration:1.2
+        }
+      },
+      exit:{
+        scale:[1.1,0],
+        opacity:[1.1,0],
+        transition:{
+          duration:1.2
+        }
+      }
+    }
+
   return (
     <>
-      <div className="signup-box">
-        <div className="cancel" onClick={()=>showOrHideSignUpBox(false)}>
+      <motion.div 
+      className="signup-box"
+      variants={innerBoxVarients}
+      >
+        <div className="cancel" onClick={()=>{
+          showOrHideSignUpBox(false)}
+        }>
           <img src={cancel} alt="" />
         </div>
         <div className="authentication-third-party-section">
           <p >Sign up with</p>
           <div className="authentication-third-party">
-            <div className="google" onClick={()=>{
+            <motion.div 
+            className="google"
+            whileTap={{
+              scale:1.2
+            }} 
+            onClick={()=>{
               loginWithSocialMedia(googleProvider)
             }}>
               <img src={google} alt="google" />
-            </div>
-            <div className="github" onClick={()=>{
+            </motion.div>
+            <motion.div 
+            className="github"
+            whileTap={{
+              scale:1.2
+            }} 
+            onClick={()=>{
               loginWithSocialMedia(githubProvider)
             }}>
               <img src={github} alt="github" />
-            </div>
-            <div className="facebook" onClick={()=>{
+            </motion.div>
+            <motion.div 
+            className="facebook"
+            whileTap={{
+              scale:1.2
+            }} 
+            onClick={()=>{
               loginWithSocialMedia(facebookProvider)
             }}>
               <img src={facebook} alt="fb" />
-            </div>
+            </motion.div>
           </div>
           <p className='or'>or</p>
         </div>
@@ -117,10 +169,15 @@ function SignUp({showOrHideSignUpBox}) {
                 <p>keep me logged in</p>
               </div>
             </div>
-            <button className='submit-button'>Sign Up</button>
+            <motion.button 
+            className='submit-button'
+            whileTap={{
+              scale:1.1
+            }}
+            >Sign Up</motion.button>
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }
