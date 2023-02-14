@@ -1,11 +1,7 @@
 import Home from "./pages/home/Home";
-import Notes from "./pages/notes/Notes"
-import ToDo from "./pages/to-do/ToDo"
-import Remainder from "./pages/remainder/Remainder"
-import Labaled from "./pages/Labaled/Labaled"
-import Favourates from "./pages/favourates/Favourates"
 import { createBrowserRouter, createRoutesFromElements, Route, Outlet, RouterProvider } from 'react-router-dom'
 import Loading from "./pages/loadingPage/Loading";
+import User from "./pages/User/User";
 
 
 function App() {
@@ -15,7 +11,7 @@ function App() {
       <Route path="/" element={<Root />}>
         <Route index path="/" element={<Home />} />
         <Route path='user/loading' element={<Loading />} />
-        <Route path=":username/notes" element={<Notes/>} />
+        <Route path=":username/notes" element={<User/>} />
       </Route>
     )
   )
