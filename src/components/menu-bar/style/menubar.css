@@ -1,0 +1,57 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@500&display=swap');
+
+.menubar{
+    width: 22%;
+    height: 100%;
+    background-color: #121C40;
+    border-radius: 0 .75rem .75rem 0;
+    padding: .8rem 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+.notes-button{
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    margin-top: .3rem;
+    font-size: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.notes-button.active{
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:flex-start;
+}
+
+.active-link{
+    background-color: #d9d9d93d;
+}
+
+.notes-button img{
+    width: 2rem;
+    height: 1.25rem;
+}
+
+.notes-button.active img{
+    margin-left: 5%; 
+}
+
+.notes-button p{
+    margin-left:8%;
+}

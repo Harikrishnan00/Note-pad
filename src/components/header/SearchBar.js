@@ -1,11 +1,14 @@
 import './style/searchbar.css'
 import SearchIcon from '../../assets/icons/search.svg'
 import React from 'react'
+import {motion} from  'framer-motion'
 
 function SearchBar() {
   return (
     <div className='search-bar'>
-        <input type="text" placeholder='Search'/>
+        <motion.input whileFocus={{
+      scale:1.02
+    }} type="text" placeholder='Search'/>
         <img src={SearchIcon} alt="search" />
     </div>
   )

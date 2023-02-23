@@ -4,10 +4,11 @@ import MenuButton from './MenuButton'
 import Profile from './Profile'
 import SearchBar from './SearchBar'
 
-function Header() {
+function Header({isclickedHamMenu}) {
+    
     return (
         <div className='Header-container'>
-            <MenuButton />
+            <MenuButton isclickedHamMenu={isclickedHamMenu}/>
             <SearchBar />
             <Profile />
         </div>
