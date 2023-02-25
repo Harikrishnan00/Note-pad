@@ -14,9 +14,20 @@ function MenuBar({isClickedBtn}) {
  
   useEffect(() => {
     controls.start({
-      width: isClickedBtn ? 50 : 255
+      width: isClickedBtn ? 50 : 252
     })
   }, [isClickedBtn])
+
+  const menuButtonVariants={
+    hoverEffect:{
+        backgroundColor:"#d9d9d921",
+        transition:{
+            type:"tween",
+            ease:"easeInOut",
+            duration:.05
+        }
+    }
+  }
 
 
     return (
@@ -30,30 +41,36 @@ function MenuBar({isClickedBtn}) {
             </div>
             <motion.div 
             className={isClickedBtn ? "notes-button "  : "notes-button active"}
-            whileHover={{
-                backgroundColor:"#d9d9d921"
-            }}
-            transition={{
-                type:"tween",
-                ease:"easeInOut",
-                duration:.05
-            }}
+            variants={menuButtonVariants}
+            whileHover="hoverEffect"
             >
                 <img src={ToDoIcon}alt="" />
                 {!isClickedBtn && (<p>To-Do</p>)}
             </motion.div>
-            <div className={isClickedBtn ? "notes-button"  : "notes-button active"}>
+            <motion.div 
+            className={isClickedBtn ? "notes-button"  : "notes-button active"}
+            variants={menuButtonVariants}
+            whileHover="hoverEffect"
+            >
                 <img src={RemainderIcon}alt="" />
                 {!isClickedBtn && (<p>Remainders</p>)}
-            </div>
-            <div className={isClickedBtn ? "notes-button"  : "notes-button active"}>
+            </motion.div>
+            <motion.div 
+            className={isClickedBtn ? "notes-button"  : "notes-button active"}
+            variants={menuButtonVariants}
+            whileHover="hoverEffect"
+            >
                 <img src={LabelIcon}alt="" />
                 {!isClickedBtn && (<p>Labales</p>)}
-            </div>
-            <div className={isClickedBtn ? "notes-button"  : "notes-button active"}>
+            </motion.div>
+            <motion.div 
+            className={isClickedBtn ? "notes-button"  : "notes-button active"}
+            variants={menuButtonVariants}
+            whileHover="hoverEffect"
+            >
                 <img src={FavouratesIcon} alt="" />
                 {!isClickedBtn && (<p>Favourates</p>)}
-            </div>
+            </motion.div>
         </motion.div>
     )
 }

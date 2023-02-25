@@ -9,9 +9,10 @@ function MenuButton({isclickedHamMenu}) {
   const [isClicked, setisClicked] = useState(false)
  
   useEffect(() => {
-    controls.start({
+    if(window.innerWidth >768 ){
+      controls.start({
       width: isClicked ? 250 : 50
-    })
+    })}
   }, [isClicked])
 
 
@@ -23,9 +24,12 @@ function MenuButton({isclickedHamMenu}) {
         setisClicked(!isClicked)
         isclickedHamMenu(isClicked)
       }}
+      whileTap={{
+        scale:1.15
+      }}
     >
       <img src={HamBurgerIcon} alt="menu" />
-      {isClicked && (<p>Menu</p>) }
+      {(isClicked && window.innerWidth >768) && (<p>Menu</p>) }
     </motion.div>
   )
 }

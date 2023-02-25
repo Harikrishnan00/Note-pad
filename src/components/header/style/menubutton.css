@@ -8,11 +8,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: .25rem;
+    margin-left: .1rem;
     cursor: pointer;
     font-size: 1.2rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .menu-button p{
@@ -29,6 +30,6 @@
     .menu-button{
         width: 2.75rem;
         height: 2.75rem;
-        margin-left: .35rem;
+        margin-left: .18rem;
     }
 }

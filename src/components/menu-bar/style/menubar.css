@@ -25,6 +25,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .notes-button.active{
@@ -37,6 +38,7 @@
     flex-direction: row;
     align-items: center;
     justify-content:flex-start;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .active-link{
