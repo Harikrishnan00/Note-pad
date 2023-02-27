@@ -6,11 +6,13 @@
     height: 100%;
     background-color: #121C40;
     border-radius: 0 .75rem .75rem 0;
-    padding: .8rem 3%;
+    padding: .8rem .5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: 'Signika Negative', sans-serif;
+    position: relative;
+    z-index: 10;
 }
 
 .notes-button{

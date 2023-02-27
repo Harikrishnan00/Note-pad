@@ -28,8 +28,8 @@
 
 @media only screen and (max-width: 768px){
     .menu-button{
-        width: 2.75rem;
-        height: 2.75rem;
-        margin-left: .18rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-left: .5rem;
     }
 }

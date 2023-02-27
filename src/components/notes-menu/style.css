@@ -1,0 +1,28 @@
+
+.menu-note-container{
+    width: 25%;
+    height: 25%;
+    position: relative;
+    left: 50%;
+    top: 10rem;
+}
+.menu-note-button,
+.item{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.menu-note-button{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: blueviolet;
+    z-index: 10;
+}
+
+.item{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    transition: transform ease-in-out .6s;
+}

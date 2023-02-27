@@ -9,10 +9,12 @@
     "firebase": "^9.17.1",
     "framer-motion": "^9.0.2",
     "react": "^18.2.0",
+    "react-circular-menu": "^2.3.10",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.1",
     "react-router-dom": "^6.8.0",
     "react-scripts": "^5.0.1",
+    "styled-components": "^5.3.6",
     "typed.js": "^2.0.12",
     "web-vitals": "^2.1.4"
   },

@@ -12,7 +12,17 @@
     width: 100%;
     height: 100vh;
     display: grid;
-    grid-template-columns: 18.5% 1fr;
+    grid-template-columns: 8% 1fr;
     grid-template-rows: 14% 1fr;
-   
+   background-color: #ffffff52;
+}
+
+.active{
+    grid-template-columns: 18.5% 1fr;
+}
+
+@media only screen and (max-width: 768px){
+    .user-page-container{
+        grid-template-columns: 0% 1fr;
+    }      
 }

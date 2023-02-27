@@ -31,7 +31,9 @@ function MenuBar({isClickedBtn}) {
 
 
     return (
-        <motion.div 
+        <>
+
+        {(window.innerWidth > 768 || !isClickedBtn)&&(<motion.div 
         className="menubar"
         animate={controls}
         >
@@ -71,7 +73,8 @@ function MenuBar({isClickedBtn}) {
                 <img src={FavouratesIcon} alt="" />
                 {!isClickedBtn && (<p>Favourates</p>)}
             </motion.div>
-        </motion.div>
+        </motion.div>)}
+        </>
     )
 }
 
