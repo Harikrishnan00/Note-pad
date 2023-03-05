@@ -1,11 +1,17 @@
 import './style/loading.css'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
+import firebaseConfigure from '../../firebase/Firebase'
+import { ref, set ,onValue} from "firebase/database"
+import {useNavigate} from 'react-router-dom'
 
 function Loading() {
-
     const { userid } = useParams()
+    const navigate = useNavigate()
+    const [isUserExist,setisUserExist] = useState(false)
+    
+    const { name, email, profileAddres } = useLocation().state
 
     const boxVarients = {
         from: {
@@ -68,37 +74,76 @@ function Loading() {
         }
     }
 
-    const pageVariants ={
-        from:{
-            x:500,
-            // scale:.8
+    const pageVariants = {
+        from: {
+            x: 500
         },
-        to:{
-            x:0,
-            // scale:1,
-            transition:{
-                duration:1.2,
-                type:"spring"
+        to: {
+            x: 0,
+            transition: {
+                duration: 1.2,
+                type: "spring"
             }
         },
-        exit:{
-            x:-300,
-            // scale:1,
-            transition:{
-                duration:1.2,
-                type:"spring"
+        exit: {
+            x: -300,
+            transition: {
+                duration: 1.2,
+                type: "spring"
             }
         }
     }
 
+    const checkUserDataInDbOrNot = () =>{
+         onValue(ref(firebaseConfigure.database, 'users/'), (snapshot) => {
+            const data = snapshot.hasChild(userid);
+            setisUserExist(data)
+        })
+    }
+
+    useEffect(() => {
+        checkUserDataInDbOrNot()
+    }, [userid])
+
+
+    const settingFirebaseDb = () => {
+        set(ref(firebaseConfigure.database, 'users/' + userid), {
+            name: name,
+            email: email,
+            profilePicAddres: profileAddres,
+            notes:"",
+            todos:"",
+            remainders:""
+        });
+    }
+
+    const retrievDataFromFirebaseDb = () =>{
+        onValue(ref(firebaseConfigure.database, 'users/'+ userid ), (snapshot) => {
+            const data = snapshot.val();
+            navigate(`/${data.name}/notes`,{
+                state:data
+            })
+        })
+    }
+
+    useEffect(() => {
+
+        if(isUserExist){
+            retrievDataFromFirebaseDb()
+        }else{
+            settingFirebaseDb()
+        }
+
+    }, [isUserExist])
+
     return (
         <AnimatePresence >
-            <motion.div 
-            className='loading-container'
-            variants={pageVariants}
-            initial="from"
-            animate="to"
-            exit="exit"
+            <motion.div
+                className='loading-container'
+                variants={pageVariants}
+                initial="from"
+                animate="to"
+                exit="exit"
             >
                 <motion.div
                     className='center-box'

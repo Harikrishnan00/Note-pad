@@ -15,23 +15,23 @@ import Error from '../../components/UIComponents/Error'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Login({ showOrHideSignUpBox }) {
 
     const [userId, setUserId] = useState("")
-    const [isChecked,setisChecked] = useState(false)
+    const [isChecked, setisChecked] = useState(false)
 
     const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors } } = useForm() // Destructuring useForm
 
-    useEffect(()=>{
-        if(isChecked&&userId){
-            localStorage.setItem("id",userId)
+    useEffect(() => {
+        if (isChecked && userId) {
+            localStorage.setItem("id", userId)
         }
-    },[userId])
-    
+    }, [userId])
+
     // Function to perform login with email and pass
     const loginWithEmailAndPass = ({ email, password }) => {
 
@@ -71,8 +71,14 @@ function Login({ showOrHideSignUpBox }) {
                 // user.uid
                 // user.photoURL
                 setUserId(user.uid)
-                console.log(userId);
-                navigate(`user/${user.uid}`)
+                console.log(user);
+                navigate(`user/${user.uid}`,{
+                state:{
+                    name:user.displayName,
+                    profileAddres:user.photoURL,
+                    email:user.email
+                }}
+                )
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -160,7 +166,7 @@ function Login({ showOrHideSignUpBox }) {
                     </div>
                     <div className="keep-logged-in-and-forget">
                         <div className="keep-me-logged-in">
-                            <input type="checkbox" onClick={(e)=>{setisChecked(e.target.checked)}}/>
+                            <input type="checkbox" onClick={(e) => { setisChecked(e.target.checked) }} />
                             <p>keep me logged in</p>
                         </div>
                         <div className="forgot">

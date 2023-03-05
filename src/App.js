@@ -13,7 +13,6 @@ function App() {
         <Route path='user/:userid' element={<Loading />} />
         <Route path=":username/notes" element={<User/>} />
         <Route path="test" element={<Test/>} />
-        
       </Route>
     )
   )

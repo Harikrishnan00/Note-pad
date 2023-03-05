@@ -7,7 +7,6 @@ import Image from '../../assets/images/wp2839729-retro-wallpaper.png'
 import MenuForNotes from '../../components/notes-menu/MenuForNotes'
 import NoteAddSection from './NoteAddSection'
 
-
 function Notes({ handleSelectionNoteBtnclick,isAddBtnClicked,handleAddBtnClick }) {
 
     return (
@@ -29,10 +28,10 @@ function Notes({ handleSelectionNoteBtnclick,isAddBtnClicked,handleAddBtnClick }
                                     </video>
                                     <MenuForNotes />
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident non porro saepe ipsum officiis et maiores voluptatibus dolores iure! Cupiditate aliquam aperiam omnis illo quidem repellendus aut ut cumque consequatur.0</p>
-                                    {/* <div className="note-bottom-icons">
+                                    <div className="note-bottom-icons">
                                         <img src={FavourateIcon} alt="" />
                                         <img src={PinIcon} alt="" />
-                                    </div> */}
+                                    </div>
                                 </div>)
                         })}
                     </div>

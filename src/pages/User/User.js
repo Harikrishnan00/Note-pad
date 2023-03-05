@@ -5,11 +5,14 @@ import MenuBar from '../../components/menu-bar/MenuBar'
 import AddButton from '../../components/add-btn/AddButton'
 import Notes from '../notes/Notes'
 import SelectionHeader from '../../components/header/SelectionHeader'
+import {useLocation} from 'react-router-dom'
 
 function User() {
   const [isClickedBtn,setisClickedBtn] = useState(true)
   const [isSelectionBtnClicked,setisSelectionBtnClicked] = useState(true)
   const [isAddBtnClicked,setisAddBtnClicked] = useState(false)
+
+  const userData = useLocation().state
 
   const isclickedHamMenu = (isClicked) => {
       setisClickedBtn(isClicked)
