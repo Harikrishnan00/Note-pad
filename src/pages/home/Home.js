@@ -48,12 +48,32 @@ function Home() {
                 when: "beforeChildren"
             }
         },
-        exit:{
+        exit: {
             clipPath: "circle(12.2% at 100% 0)",
-            opacity:0,
-            transition:{
-                duration:.8,
+            opacity: 0,
+            transition: {
+                duration: .8,
                 when: "afterChildren"
+            }
+        }
+    }
+
+    const pageVariants ={
+        from:{
+            x:300   
+        },
+        to:{
+            x:0,
+            transition:{
+                duration:.6,
+                type:"spring"
+            }
+        },
+        exit:{
+            x:-300,
+            transition:{
+                duration:1.2,
+                type:"spring"
             }
         }
     }
@@ -61,40 +81,48 @@ function Home() {
 
     return (
         <>
-            <div className='container'> 
-                <div className='left-section'>
-                    <div className='blob-1'>
-                        <Blob />
+            <AnimatePresence>
+                <motion.div 
+                className='container'
+                variants={pageVariants}
+                initial="from"
+                animate="to"
+                exit="exit"
+                >
+                    <div className='left-section'>
+                        <div className='blob-1'>
+                            <Blob />
+                        </div>
+                        <div className="text-section">
+                            <p className='text-on-left-section'>Your Note Taking  <span ref={el}></span> </p>
+                        </div>
+                        <div className='blob-2'>
+                            <Blob />
+                        </div>
+                        <div className='blob-3'>
+                            <Blob />
+                        </div>
+                        <div className="left-section-illustration">
+                            <Illustraion />
+                        </div>
                     </div>
-                    <div className="text-section">
-                        <p className='text-on-left-section'>Your Note Taking  <span ref={el}></span> </p>
+                    <div className='right-section'>
+                        <Login showOrHideSignUpBox={showOrHideSignUpBox} />
                     </div>
-                    <div className='blob-2'>
-                        <Blob />
-                    </div>
-                    <div className='blob-3'>
-                        <Blob />
-                    </div>
-                    <div className="left-section-illustration">
-                        <Illustraion />
-                    </div>
-                </div>
-                <div className='right-section'>
-                    <Login showOrHideSignUpBox={showOrHideSignUpBox} />
-                </div>
-                 <AnimatePresence> 
-                    {isClicked && 
-                    (<motion.div
-                        className="wrapper "
-                        variants={wrapperVarients}
-                        initial="from"
-                        animate="to"
-                        exit="exit"
-                    >
-                        <SignUp showOrHideSignUpBox={showOrHideSignUpBox} />
-                    </motion.div>)}
-                </AnimatePresence>
-            </div>
+                    <AnimatePresence>
+                        {isClicked &&
+                            (<motion.div
+                                className="wrapper "
+                                variants={wrapperVarients}
+                                initial="from"
+                                animate="to"
+                                exit="exit"
+                            >
+                                <SignUp showOrHideSignUpBox={showOrHideSignUpBox} />
+                            </motion.div>)}
+                    </AnimatePresence>
+                </motion.div>
+            </AnimatePresence>
         </>
     )
 }

@@ -2,8 +2,7 @@ import Home from "./pages/home/Home";
 import { createBrowserRouter, createRoutesFromElements, Route, Outlet, RouterProvider } from 'react-router-dom'
 import Loading from "./pages/loadingPage/Loading";
 import User from "./pages/User/User";
-import MenuForNotes from './components/notes-menu/MenuForNotes'
-
+import Test from './Test'
 
 function App() {
 
@@ -11,9 +10,10 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index path="/" element={<Home />} />
-        <Route path='user/loading' element={<Loading />} />
+        <Route path='user/:userid' element={<Loading />} />
         <Route path=":username/notes" element={<User/>} />
-        <Route path="menu" element={<MenuForNotes/>} />
+        <Route path="test" element={<Test/>} />
+        
       </Route>
     )
   )

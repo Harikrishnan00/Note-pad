@@ -1,0 +1,64 @@
+
+.menu-note-container{
+    position: relative;
+    left: calc(50% - .9rem);
+    visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-note-button,
+.item,
+.color-item{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.color-item{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform ease-in-out .6s;
+}
+
+.color-item:hover{
+    border: 2px solid #1818c9;
+}
+
+.menu-note-button{
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-note-button img{
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+.item{
+    z-index: 5;
+    transition: transform ease-in-out .6s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.item img{
+    width:40%;
+}
+
+
+
+
+

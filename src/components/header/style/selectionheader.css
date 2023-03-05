@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
+
+.selection-header-container {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow:
+        0px 0.4px 2.2px rgba(0, 0, 0, 0.037),
+        0px 0.9px 5.3px rgba(0, 0, 0, 0.053),
+        0px 1.8px 10px rgba(0, 0, 0, 0.065),
+        0px 3.1px 17.9px rgba(0, 0, 0, 0.077),
+        0px 5.8px 33.4px rgba(0, 0, 0, 0.093),
+        0px 14px 80px rgba(0, 0, 0, 0.13);
+    border-radius: 0 0 .65rem .65rem;
+    height: 90%;
+}
+
+.selection-header-left-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: calc(15% + 30vw);
+    margin-left: 2rem;
+}
+
+.selection-header-cancel-button {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.selection-header-cancel-button:hover {
+    background-color: rgba(73, 60, 60, 0.685);
+}
+
+.selection-header-cancel-button img {
+    width: 75%;
+}
+
+.selection-header-left-section p {
+    font-size: 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    margin-left: .5rem;
+    color: #2d2d2dd3;
+}
+
+.selection-header-left-section span {
+    font-size: 1.8rem;
+    margin-right: .5rem;
+}
+
+.selection-header-right-section {
+    width: calc(15% + 1.8rem);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-right: 1.5rem;
+}
+
+.selection-header-delete-button,
+.selection-header-pin-button,
+.selection-header-favourate-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.selection-header-delete-button:hover,
+.selection-header-pin-button:hover,
+.selection-header-favourate-button:hover {
+    background-color: #2d2d2d73;
+}
+
+.selection-header-delete-button img,
+.selection-header-pin-button img,
+.selection-header-favourate-button img {
+    width: 55%;
+}
+
+@media only screen and (max-width: 768px) {
+    .selection-header-left-section {
+        margin-left: 1rem;
+    }
+
+    .selection-header-cancel-button {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .selection-header-left-section p {
+        font-size: 1.2rem;
+        font-family: 'Open Sans', sans-serif;
+        margin-left: .2rem;
+    }
+
+    .selection-header-left-section span {
+        font-size: 1.5rem;
+        margin-right: .5rem;
+    }
+
+    .selection-header-delete-button,
+    .selection-header-pin-button,
+    .selection-header-favourate-button {
+        width: 2rem;
+        height: 2rem;
+    }
+
+}

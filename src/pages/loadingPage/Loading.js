@@ -1,8 +1,12 @@
 import './style/loading.css'
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useParams } from 'react-router-dom'
 
 function Loading() {
+
+    const { userid } = useParams()
+
     const boxVarients = {
         from: {
             scale: 1,
@@ -64,37 +68,68 @@ function Loading() {
         }
     }
 
+    const pageVariants ={
+        from:{
+            x:500,
+            // scale:.8
+        },
+        to:{
+            x:0,
+            // scale:1,
+            transition:{
+                duration:1.2,
+                type:"spring"
+            }
+        },
+        exit:{
+            x:-300,
+            // scale:1,
+            transition:{
+                duration:1.2,
+                type:"spring"
+            }
+        }
+    }
+
     return (
-        <div className='loading-container'>
-            <motion.div
-                className='center-box'
-                variants={boxVarients}
-                initial="from"
-                animate="to"
+        <AnimatePresence >
+            <motion.div 
+            className='loading-container'
+            variants={pageVariants}
+            initial="from"
+            animate="to"
+            exit="exit"
             >
                 <motion.div
-                    className="item-1"
-                    variants={itemVariants}
-                    animate="item1"
-                ></motion.div>
-                <motion.div
-                    className="item-2"
-                    variants={itemVariants}
-                    animate="item2"
-                ></motion.div>
-                <motion.div
-                    className="item-3"
-                    variants={itemVariants}
-                    animate="item3"
-                ></motion.div>
-                <motion.div
-                    className="item-4"
-                    variants={itemVariants}
-                    animate="item4"
+                    className='center-box'
+                    variants={boxVarients}
+                    initial="from"
+                    animate="to"
+                >
+                    <motion.div
+                        className="item-1"
+                        variants={itemVariants}
+                        animate="item1"
+                    ></motion.div>
+                    <motion.div
+                        className="item-2"
+                        variants={itemVariants}
+                        animate="item2"
+                    ></motion.div>
+                    <motion.div
+                        className="item-3"
+                        variants={itemVariants}
+                        animate="item3"
+                    ></motion.div>
+                    <motion.div
+                        className="item-4"
+                        variants={itemVariants}
+                        animate="item4"
 
-                ></motion.div>
+                    ></motion.div>
+                </motion.div>
             </motion.div>
-        </div>
+        </AnimatePresence>
     )
 }
 

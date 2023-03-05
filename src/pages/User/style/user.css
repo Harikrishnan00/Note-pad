@@ -13,7 +13,7 @@
     height: 100vh;
     display: grid;
     grid-template-columns: 8% 1fr;
-    grid-template-rows: 14% 1fr;
+    grid-template-rows: 12% 1fr;
    background-color: #ffffff52;
 }
 

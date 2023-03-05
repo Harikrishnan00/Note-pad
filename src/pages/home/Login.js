@@ -2,53 +2,77 @@ import './style/login.css'
 import google from '../../assets/icons/google.png'
 import github from '../../assets/icons/github.png'
 import facebook from '../../assets/icons/facebook.png'
-import auth from '../../firebase/Firebase'
-import {signInWithRedirect ,signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,GithubAuthProvider,FacebookAuthProvider } from 'firebase/auth'
+import firebaseConfigure from '../../firebase/Firebase'
+import {
+    signInWithRedirect,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+    GithubAuthProvider,
+    FacebookAuthProvider
+} from 'firebase/auth'
 import Error from '../../components/UIComponents/Error'
 import { useForm } from 'react-hook-form'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 
 function Login({ showOrHideSignUpBox }) {
 
+    const [userId, setUserId] = useState("")
+    const [isChecked,setisChecked] = useState(false)
+
+    const navigate = useNavigate()
+
     const { register, handleSubmit, formState: { errors } } = useForm() // Destructuring useForm
 
+    useEffect(()=>{
+        if(isChecked&&userId){
+            localStorage.setItem("id",userId)
+        }
+    },[userId])
+    
     // Function to perform login with email and pass
     const loginWithEmailAndPass = ({ email, password }) => {
-        
-        signInWithEmailAndPassword(auth, email, password)
+
+        signInWithEmailAndPassword(firebaseConfigure.auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user.uid);
+                setUserId(user.uid)
+                navigate(`user/${user.uid}`)
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
             })
+
     }
 
     // Initiliazing  the auth provider ojects from firebase to variables
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
-    const facebookProvider = new FacebookAuthProvider() 
+    const facebookProvider = new FacebookAuthProvider()
 
     // Changing the signin method(withRedirect/withPopup) depends on the screen size of device
     let loginWithPopUpOrRedirect
 
-    if(window.innerWidth<768){
+    if (window.innerWidth < 768) {
         loginWithPopUpOrRedirect = signInWithRedirect
-    }else{
+    } else {
         loginWithPopUpOrRedirect = signInWithPopup
     }
-    
+
     // Function to  perform login with social accounts depends on which provider is clicked
     const loginWithSocialMedia = (provider) => {
-        loginWithPopUpOrRedirect(auth, provider)
-            .then((result) => {
+        loginWithPopUpOrRedirect(firebaseConfigure.auth, provider)
+            .then(async (result) => {
                 const user = result.user;
                 // user.displayName
                 // user.uid
                 // user.photoURL
-                console.log(user)
+                setUserId(user.uid)
+                console.log(userId);
+                navigate(`user/${user.uid}`)
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -61,39 +85,40 @@ function Login({ showOrHideSignUpBox }) {
             })
     }
 
+
     return (
         <>
             <div className="authentication-third-party-section">
                 <p >Sign in with</p>
                 <div className="authentication-third-party">
-                    <motion.div 
-                    className="google"
-                    whileTap={{
-                        scale:1.2
-                    }} 
-                    onClick={()=>{
-                        loginWithSocialMedia(googleProvider)
-                    }}>
+                    <motion.div
+                        className="google"
+                        whileTap={{
+                            scale: 1.2
+                        }}
+                        onClick={() => {
+                            loginWithSocialMedia(googleProvider)
+                        }}>
                         <img src={google} alt="google" />
-                    </motion.div> 
-                    <motion.div 
-                    className="github"
-                    whileTap={{
-                        scale:1.2
-                    }}  
-                    onClick={()=>{
-                        loginWithSocialMedia(githubProvider)
-                    }}>
+                    </motion.div>
+                    <motion.div
+                        className="github"
+                        whileTap={{
+                            scale: 1.2
+                        }}
+                        onClick={() => {
+                            loginWithSocialMedia(githubProvider)
+                        }}>
                         <img src={github} alt="github" />
                     </motion.div>
-                    <motion.div 
-                    className="facebook"
-                    whileTap={{
-                        scale:1.2
-                    }}  
-                    onClick={()=>{
-                        loginWithSocialMedia(facebookProvider)
-                    }}>
+                    <motion.div
+                        className="facebook"
+                        whileTap={{
+                            scale: 1.2
+                        }}
+                        onClick={() => {
+                            loginWithSocialMedia(facebookProvider)
+                        }}>
                         <img src={facebook} alt="fb" />
                     </motion.div>
                 </div>
@@ -135,22 +160,22 @@ function Login({ showOrHideSignUpBox }) {
                     </div>
                     <div className="keep-logged-in-and-forget">
                         <div className="keep-me-logged-in">
-                            <input type="checkbox" />
+                            <input type="checkbox" onClick={(e)=>{setisChecked(e.target.checked)}}/>
                             <p>keep me logged in</p>
                         </div>
                         <div className="forgot">
                             <p>forget password?</p>
                         </div>
                     </div>
-                    <motion.button 
-                    className='submit-button'
-                    whileTap={{
-                        scale:1.1
-                    }}
+                    <motion.button
+                        className='submit-button'
+                        whileTap={{
+                            scale: 1.1
+                        }}
                     >Sign In</motion.button>
                 </form>
             </div>
-            <div className="signup-btn" onClick={() => 
+            <div className="signup-btn" onClick={() =>
                 showOrHideSignUpBox(true)}>
                 <p>Are you new here?</p>
             </div>

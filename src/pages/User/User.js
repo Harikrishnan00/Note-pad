@@ -4,20 +4,31 @@ import Header from '../../components/header/Header'
 import MenuBar from '../../components/menu-bar/MenuBar'
 import AddButton from '../../components/add-btn/AddButton'
 import Notes from '../notes/Notes'
+import SelectionHeader from '../../components/header/SelectionHeader'
 
 function User() {
   const [isClickedBtn,setisClickedBtn] = useState(true)
+  const [isSelectionBtnClicked,setisSelectionBtnClicked] = useState(true)
+  const [isAddBtnClicked,setisAddBtnClicked] = useState(false)
 
   const isclickedHamMenu = (isClicked) => {
       setisClickedBtn(isClicked)
   }
 
+  const handleSelectionNoteBtnclick = (data) =>{
+      setisSelectionBtnClicked(data)
+  }
+
+  const handleAddBtnClick = (data) =>{
+    setisAddBtnClicked(data)
+  }
+
   return (
     <div className={isClickedBtn ? 'user-page-container ' : 'user-page-container active'}>
-        <Header isclickedHamMenu={isclickedHamMenu}/>
+        {isSelectionBtnClicked ? <Header isclickedHamMenu={isclickedHamMenu}/> :<SelectionHeader />}
         <MenuBar isClickedBtn={isClickedBtn}/>
-        <Notes />
-        <AddButton />
+        <Notes handleAddBtnClick={handleAddBtnClick} handleSelectionNoteBtnclick={handleSelectionNoteBtnclick} isAddBtnClicked={isAddBtnClicked}/>
+        <AddButton handleAddBtnClick={handleAddBtnClick}/>
     </div>
   )
 }

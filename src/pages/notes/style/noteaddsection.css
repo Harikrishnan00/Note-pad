@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Sono:wght@500&display=swap');
+
+.notes-add-wrapper {
+    width: 100%;
+    height: 88vh;
+    position: absolute;
+    left: 0;
+    top: 12vh;
+    background-color: #2d2d2d78;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-add-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 35%;
+    min-width: 20rem;
+}
+
+.note-add-box {
+    width: 100%;
+    min-height: 4rem;
+    background-color: white;
+    border-radius: .75rem;
+    position: relative;
+}
+
+.note-input-section {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-left: 5%;
+
+}
+
+.note-input-section>input {
+    border: none;
+    outline: none;
+    caret-color: transparent;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    height: 1.8rem;
+}
+
+.note-input-section>input::placeholder {
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.582);
+    opacity: 1;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.note-input-section>input+textarea {
+    height: 2rem;
+    resize: none;
+    outline: none;
+    border: none;
+    margin-top: .4rem;
+    font-size: .9rem;
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.note-input-section img {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 1.5rem;
+    cursor: pointer;
+}
+
+.note-box-menu-section {
+    width: 100%;
+    margin-top: 1rem;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    box-shadow:
+        0px -2px 2.2px rgba(0, 0, 0, 0.07),
+        0px -2px 5.3px rgba(0, 0, 0, 0.05),
+        0px -2px 10px rgba(0, 0, 0, 0.042),
+        0px -2px 17.9px rgba(0, 0, 0, 0.035),
+        0px -2px 33.4px rgba(0, 0, 0, 0.028),
+        0px -2px 80px rgba(0, 0, 0, 0.02);
+}
+
+.note-add-box-menu {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-left: 5%;
+}
+
+.note-add-box-menu img {
+    cursor: pointer;
+}
+
+.note-box-menu-section>p {
+    margin-right: 5%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.color-selection-box-container {
+    width: 100%;
+    height: 3rem;
+    background-color: white;
+    border-radius: .75rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+}
+
+.color-btn,
+.color-default-btn {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.color-btn:hover,
+.color-default-btn:hover {
+    border: 2px solid rgb(22, 22, 202);
+}
+
+.color-default-btn {
+    margin-left: 5%;
+}
+
+.color-default-btn img {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .color-btn,
+    .color-default-btn {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+    .color-selection-box-container {
+        height: 2.25rem;
+        border-radius: .55rem;
+        gap: .3rem;
+    }
+    .note-add-container {
+        gap: .5rem; 
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .notes-add-wrapper{
+        background-color: transparent;
+        align-items: none;
+        justify-content: none;
+        top: 5vh;
+        
+    }
+    .note-add-container{
+        width: 100%;
+        height: 100vh;
+        gap: 0;
+        z-index: 999;
+    }
+    .note-add-box{
+        height: 100vh;
+    }
+    .note-box-menu-section{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+    }
+}
