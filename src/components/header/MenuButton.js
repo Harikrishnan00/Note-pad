@@ -6,8 +6,8 @@ import { motion, useAnimationControls } from "framer-motion"
 function MenuButton({isclickedHamMenu}) {
   const controls = useAnimationControls()
 
-  const [isClicked, setisClicked] = useState(false)
- 
+  const [isClicked, setisClicked] = useState(true)
+  
   useEffect(() => {
     if(window.innerWidth >768 ){
       controls.start({
@@ -15,7 +15,7 @@ function MenuButton({isclickedHamMenu}) {
     })}
   }, [isClicked])
 
-
+  console.log(isClicked)
   return (
     <motion.div
       className='menu-button'

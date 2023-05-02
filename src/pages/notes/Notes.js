@@ -6,12 +6,16 @@ import FavourateIcon from '../../assets/icons/fav.svg'
 import Image from '../../assets/images/wp2839729-retro-wallpaper.png'
 import MenuForNotes from '../../components/notes-menu/MenuForNotes'
 import NoteAddSection from './NoteAddSection'
+import Notesonwall from '../../components/UIComponents/Notesonwall'
 
-function Notes({ handleSelectionNoteBtnclick,isAddBtnClicked,handleAddBtnClick }) {
+function Notes({ handleSelectionNoteBtnclick, isAddBtnClicked, handleAddBtnClick, userData }) {
 
+    const [isUserData,setIsUserData] = useState(userData.userdata.notes)
+    console.log(userData)
     return (
         <>
             <div className="notes-container">
+                {isUserData ? 
                 <div className="note-section">
                     <p>Dec 22, 2022  </p>
                     <div className="note-box-container">
@@ -35,9 +39,16 @@ function Notes({ handleSelectionNoteBtnclick,isAddBtnClicked,handleAddBtnClick }
                                 </div>)
                         })}
                     </div>
+                </div> : 
+                <div className='frame-for-empty-notes'>
+                    <div className="frame-container">
+                        <Notesonwall />
+                        <p>“Try to add something <br/> that is important to you”</p>
+                    </div>
                 </div>
+                }
             </div>
-            <NoteAddSection isAddBtnClicked={isAddBtnClicked} handleAddBtnClick={handleAddBtnClick}/>
+            <NoteAddSection userData={userData} isAddBtnClicked={isAddBtnClicked} handleAddBtnClick={handleAddBtnClick}/>
         </>
     )
 }

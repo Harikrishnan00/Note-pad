@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom'
 function Loading() {
     const { userid } = useParams()
     const navigate = useNavigate()
-    const [isUserExist,setisUserExist] = useState(false)
+    const [isUserExist,setisUserExist] = useState(true)
     
     const { name, email, profileAddres } = useLocation().state
 
@@ -121,7 +121,10 @@ function Loading() {
         onValue(ref(firebaseConfigure.database, 'users/'+ userid ), (snapshot) => {
             const data = snapshot.val();
             navigate(`/${data.name}/notes`,{
-                state:data
+                state:{
+                    userdata:data,
+                    userId:userid
+                }
             })
         })
     }
