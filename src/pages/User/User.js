@@ -33,14 +33,15 @@ function User() {
       }
     >
       {isSelectionBtnClicked ? (
-        <Header isclickedHamMenu={isclickedHamMenu} />
+        <Header isclickedHamMenu={isclickedHamMenu} userData={userData} />
       ) : (
-        <SelectionHeader />
+        <SelectionHeader handleSelectionNoteBtnclick={handleSelectionNoteBtnclick} isClicked={isSelectionBtnClicked}/>
       )}
       <MenuBar isClickedBtn={isClickedBtn} />
       <Notes
         handleAddBtnClick={handleAddBtnClick}
         handleSelectionNoteBtnclick={handleSelectionNoteBtnclick}
+        isClicked={isSelectionBtnClicked}
         isAddBtnClicked={isAddBtnClicked}
         userData={userData}
       />

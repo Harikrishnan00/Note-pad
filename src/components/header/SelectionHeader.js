@@ -5,11 +5,11 @@ import DeleteIcon from '../../assets/icons/delete.svg'
 import PinIcon from '../../assets/icons/pin-icon.svg'
 import FavourateIcon from '../../assets/icons/fav.svg'
 
-function SelectionHeader() {
+function SelectionHeader({handleSelectionNoteBtnclick,isClicked}) {
     return (
         <div className='selection-header-container'>
             <div className="selection-header-left-section">
-                <div className="selection-header-cancel-button">
+                <div className="selection-header-cancel-button" onClick={()=>{handleSelectionNoteBtnclick(!isClicked)}}>
                     <img src={CancelIcon} alt="cancel" />
                 </div>
                 <p><span>10</span>Selected</p>

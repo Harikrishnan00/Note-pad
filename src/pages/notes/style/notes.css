@@ -60,8 +60,12 @@
   position: relative;
 }
 
+.note-box > h3{
+  margin: 0.5rem 0 0 1rem;
+}
+
 .note-box > p {
-  margin: 2rem 1rem 1.8rem 1rem;
+  margin: 1rem 1rem 1.8rem 1rem;
   display: -webkit-box;
   overflow: hidden;
   font-size: clamp(0.05vh, 0.95rem, 16px);

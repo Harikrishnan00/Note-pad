@@ -111,7 +111,7 @@ function Loading() {
             name: name,
             email: email,
             profilePicAddres: profileAddres,
-            notes:"",
+            notes:[],
             todos:"",
             remainders:""
         });

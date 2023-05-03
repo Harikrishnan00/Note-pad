@@ -17,10 +17,15 @@ function NoteAddSection({ isAddBtnClicked, handleAddBtnClick, userData }) {
   
 
   const [note,setnote] = useState([])
-  const [inputNote, setinputNote] = useState({
-    text: "hello1111",
-    isImage: false,
-  });
+  const [noteText,setNoteText] = useState("")
+  const [noteTitle,setNoteTitle] = useState("")
+
+const date = new Date();
+const months =["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+let day = date.getDate();
+let month = date.getMonth();
+let year = date.getFullYear();
+const currentDate = `${months[month]} ${day}, ${year}`
 
   const retrievDataFromFirebaseDb = () => {
     onValue(ref(firebaseConfigure.database, "users/" + userData.userId + "/notes"), (snapshot) => {
@@ -103,34 +108,48 @@ function NoteAddSection({ isAddBtnClicked, handleAddBtnClick, userData }) {
   };
 
 
-  const settingFirebaseDb = () => {
-
+  const settingFirebaseDb = (noteObject) => {
     if(!note){
-        console.log("first")
         set(
           ref(
             firebaseConfigure.database,
-            "users/" + userData.userId + "/notes/"
+            "users/" + userData.userId + "/notes/" 
           ),
           {
-            notes:[inputNote]
+            notes:[noteObject]
           }
         );
     }else{
         set(
             ref(
               firebaseConfigure.database,
-              "users/" + userData.userId + "/notes/"
+              "users/" + userData.userId + "/notes/"  
             ),
             {
-              notes:[...note,inputNote]
+              notes:[...note,noteObject]
             }
           );
     }
     
   };
 
-  
+  const settingNoteObject = () =>{
+
+    let noteObject = {
+      title:noteTitle,
+      notetext:noteText,
+      bgcolor:"",
+      imageurl:"",
+      videourl:"",
+      isFavourate:false,
+      isPinned:false,
+      date:currentDate
+    }
+
+    settingFirebaseDb(noteObject)
+
+  }
+
 
   return (
     <>
@@ -149,7 +168,7 @@ function NoteAddSection({ isAddBtnClicked, handleAddBtnClick, userData }) {
             >
               <div className="note-add-box">
                 <div className="note-input-section">
-                  <input type="text" placeholder="Title" />
+                  <input type="text" placeholder="Title" onChange={(e)=>{setNoteTitle(e.target.value)}} />
                   <textarea
                     name=""
                     id=""
@@ -157,6 +176,7 @@ function NoteAddSection({ isAddBtnClicked, handleAddBtnClick, userData }) {
                     rows="10"
                     placeholder="Enter note..."
                     onKeyUp={handleTextAreaAutoResize}
+                    onChange={(e)=>{setNoteText(e.target.value)}}
                   ></textarea>
                   <img src={PinIcon} alt="pin" />
                 </div>
@@ -171,7 +191,7 @@ function NoteAddSection({ isAddBtnClicked, handleAddBtnClick, userData }) {
                   <p
                     onClick={() => {
                       handleAddBtnClick(false);
-                      settingFirebaseDb();
+                      settingNoteObject();
                     }}
                   >
                     close

@@ -2,10 +2,10 @@ import './style/profile.css'
 import ProfilePhoto from '../../assets/images/moon-night.jpg'
 import React from 'react'
 
-function Profile() {
+function Profile({profileAddress}) {
   return (
     <div className='profile'>
-        <img src={ProfilePhoto} alt="" />
+        <img src={profileAddress} alt="" />
     </div>
   )
 }
