@@ -12,7 +12,9 @@ import { ref, set ,onValue} from "firebase/database"
 
 function Notes({ handleSelectionNoteBtnclick, isAddBtnClicked, handleAddBtnClick, userData, isClicked }) {
 
-    const [notes,setnotes] = useState(userData.userdata.notes.notes)
+    let notesObj = userData.userdata.notes.notes || null
+
+    const [notes,setnotes] = useState(notesObj) 
 
     const retrievDataFromFirebaseDb = () =>{
         onValue(ref(firebaseConfigure.database, 'users/'+ userData.userId +"/notes" ), (snapshot) => {
@@ -33,7 +35,7 @@ function Notes({ handleSelectionNoteBtnclick, isAddBtnClicked, handleAddBtnClick
                 <div className="note-section">
                     <p>Dec 22, 2022  </p>
                     <div className="note-box-container">
-                        {notes.map((data, index) => {
+                        {notes?.map((data, index) => {
                             return (
                                 <div className="note-box" key={index}>
                                     <img className='selection-btn' src={SelectIcon} alt="" onClick={() => {
